@@ -101,9 +101,33 @@
   .hero-thread .msg.bot { align-self: flex-start; background: var(--white); border: 1px solid var(--paper-dim); border-bottom-left-radius: 2px; }
   .hero-thread .msg.typing { color: var(--mid); font-style: italic; }
 
-  .scroll-cue { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .scroll-cue { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: flex; flex-direction: column; align-items: center; gap: 6px; transition: opacity 0.4s; }
   .scroll-cue svg { width: 14px; height: 14px; animation: bob 1.8s ease infinite; }
   @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+
+  /* Al mandar el primer mensaje, la portada se "despeja": se quita el ruido
+     visual (titular, pill, sugerencias) y el chat pasa a ser lo unico
+     protagonista, con un toque de Nueva York de fondo pero mas discreto. */
+  .hero-wrapper.chat-focused .hero-pill,
+  .hero-wrapper.chat-focused .hero-h1,
+  .hero-wrapper.chat-focused .chips,
+  .hero-wrapper.chat-focused .scroll-cue,
+  .hero-wrapper.chat-focused .chatbar-hint {
+    /* !important porque las animaciones de entrada (fade-up ... both) dejan
+       su propio opacity:1 final, que gana a una regla normal aqui. */
+    opacity: 0 !important; pointer-events: none; height: 0; margin: 0; overflow: hidden;
+  }
+  .hero-wrapper.chat-focused .hero-fade {
+    background: linear-gradient(to top, var(--ink) 0%, rgba(21,23,28,0.92) 30%, rgba(21,23,28,0.75) 100%);
+  }
+  .hero-wrapper.chat-focused .hero-photo img.loaded { opacity: 0.28; }
+  .hero-wrapper.chat-focused .hero { padding-top: 64px; padding-bottom: 64px; justify-content: flex-start; }
+  .hero-wrapper.chat-focused .hero-thread { max-height: min(58vh, 520px); }
+  .hero-wrapper.chat-focused { min-height: auto; }
+  .hero-wrapper, .hero-fade, .hero-photo img, .hero-thread { transition: all 0.45s ease; }
+
+  .msg-photo { align-self: center; width: 100%; max-width: 320px; border-radius: 10px; overflow: hidden; margin: 2px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.18); }
+  .msg-photo img { display: block; width: 100%; height: 150px; object-fit: cover; }
 
   /* TICKET FORM */
   .ticket-wrap { position: relative; opacity: 0; animation: fade-up 0.8s ease 0.4s both; }
