@@ -140,6 +140,10 @@
   .hero-wrapper.chat-focused .hero-thread {
     flex: 1; max-height: none; margin-top: 0; margin-bottom: 14px; min-height: 0;
     overflow-y: auto;
+    /* Margen generoso abajo para que el ultimo mensaje/tarjeta nunca quede
+       pegado al borde ni se sienta cortado cuando el scroll llega al fondo. */
+    padding-bottom: 56px;
+    scroll-padding-bottom: 56px;
   }
   .hero-wrapper.chat-focused .chatbar-wrap { flex-shrink: 0; }
   .hero-wrapper, .hero-fade, .hero-photo img, .hero-thread, .hero-h1 { transition: all 0.45s ease; }
