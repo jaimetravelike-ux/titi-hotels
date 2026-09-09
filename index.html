@@ -162,6 +162,16 @@
   }
   .hotel-card-dots button.active { background: var(--taxi); }
 
+  .hotel-card-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 28px; height: 28px; border-radius: 50%; border: none; cursor: pointer;
+    background: rgba(21,23,28,0.4); color: var(--white); font-size: 11px;
+    display: flex; align-items: center; justify-content: center; transition: background 0.15s ease;
+  }
+  .hotel-card-arrow:hover { background: rgba(21,23,28,0.65); }
+  .hotel-card-arrow.prev { left: 8px; }
+  .hotel-card-arrow.next { right: 8px; }
+
   .hotel-card-fav {
     position: absolute; top: 10px; right: 10px; z-index: 3;
     width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer;
@@ -201,11 +211,26 @@
 
   .hotel-card-meta { font-size: 11.5px; color: var(--mid); margin-top: 8px; }
 
-  .hotel-card-price { margin-top: 10px; padding-top: 10px; border-top: 1px dashed var(--paper-dim); }
+  .hotel-card-price {
+    margin-top: 12px; padding: 12px 13px; border-radius: 10px; background: var(--paper);
+  }
+  .hotel-card-price-badge {
+    display: inline-block; background: #2a9d5c; color: var(--white); font-weight: 800; font-size: 11px;
+    padding: 2px 7px; border-radius: 6px; margin-bottom: 4px;
+  }
   .hotel-card-price-original { font-size: 12px; color: var(--mid); text-decoration: line-through; }
-  .hotel-card-price-total { font-weight: 800; font-size: 20px; color: var(--ink); line-height: 1.2; }
-  .hotel-card-price-night { font-size: 11.5px; color: var(--steel); margin-top: 1px; }
+  .hotel-card-price-total { font-weight: 800; font-size: 22px; color: var(--ink); line-height: 1.25; }
+  .hotel-card-price-stay { font-size: 11.5px; color: var(--steel); margin-top: 2px; }
+  .hotel-card-price-night { font-size: 11.5px; color: var(--steel); }
   .hotel-card-price-taxes { font-size: 10.5px; color: var(--mid); margin-top: 4px; line-height: 1.4; }
+
+  .hotel-card-reserve {
+    width: 100%; margin-top: 12px; padding: 11px 0; border: none; border-radius: 10px; cursor: pointer;
+    background: var(--taxi); color: var(--ink); font-weight: 800; font-size: 13.5px; letter-spacing: 0.01em;
+    transition: background 0.15s ease, transform 0.1s ease;
+  }
+  .hotel-card-reserve:hover { background: var(--taxi-deep); }
+  .hotel-card-reserve:active { transform: scale(0.98); }
 
   /* TICKET FORM */
   .ticket-wrap { position: relative; opacity: 0; animation: fade-up 0.8s ease 0.4s both; }
