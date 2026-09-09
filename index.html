@@ -144,8 +144,22 @@
   .hero-wrapper.chat-focused .chatbar-wrap { flex-shrink: 0; }
   .hero-wrapper, .hero-fade, .hero-photo img, .hero-thread, .hero-h1 { transition: all 0.45s ease; }
 
-  .msg-photo { align-self: center; width: 100%; max-width: 380px; border-radius: 10px; overflow: hidden; margin: 2px 0; box-shadow: 0 6px 20px rgba(0,0,0,0.18); aspect-ratio: 16/10; }
-  .msg-photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 35%; }
+  .hotel-card { align-self: center; width: 100%; max-width: 380px; border-radius: 14px; overflow: hidden; margin: 2px 0; box-shadow: 0 8px 24px rgba(0,0,0,0.22); background: var(--white); }
+  .hotel-card-gallery { position: relative; width: 100%; aspect-ratio: 16/10; background: var(--paper-dim); }
+  .hotel-card-gallery img {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%;
+    opacity: 0; transition: opacity 0.5s ease;
+  }
+  .hotel-card-gallery img.active { opacity: 1; }
+  .hotel-card-dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .hotel-card-dots button {
+    width: 7px; height: 7px; border-radius: 50%; border: none; padding: 0; cursor: pointer;
+    background: rgba(255,255,255,0.5); box-shadow: 0 0 0 1px rgba(0,0,0,0.15);
+  }
+  .hotel-card-dots button.active { background: var(--taxi); }
+  .hotel-card-info { padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .hotel-card-name { font-weight: 700; font-size: 13.5px; color: var(--ink); line-height: 1.3; }
+  .hotel-card-price { font-weight: 800; font-size: 15px; color: var(--ink); white-space: nowrap; }
 
   /* TICKET FORM */
   .ticket-wrap { position: relative; opacity: 0; animation: fade-up 0.8s ease 0.4s both; }
