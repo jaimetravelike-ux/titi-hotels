@@ -121,7 +121,10 @@
   .hero-wrapper.chat-focused .chatbar-hint {
     /* !important porque las animaciones de entrada (fade-up ... both) dejan
        su propio opacity:1 final, que gana a una regla normal aqui. */
-    opacity: 0 !important; pointer-events: none; height: 0; margin: 0; overflow: hidden;
+    /* padding:0 es imprescindible: con height:0 pero padding propio (p.ej.
+       .hero-pill), el alto real renderizado sigue siendo el del padding,
+       no cero - eso era lo que dejaba una franja vacia arriba del hilo. */
+    opacity: 0 !important; pointer-events: none; height: 0; margin: 0; padding: 0; overflow: hidden; border: 0;
   }
   .hero-wrapper.chat-focused .hero-fade {
     background: linear-gradient(to top, var(--ink) 0%, rgba(21,23,28,0.92) 30%, rgba(21,23,28,0.75) 100%);
@@ -1052,6 +1055,6 @@
   }
 </script>
 
-<script src="./assets/chat-widget.js?v=11" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
+<script src="./assets/chat-widget.js?v=12" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
 </body>
 </html>
