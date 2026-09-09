@@ -133,8 +133,15 @@
      barra de escritura anclada abajo, y la conversacion ocupando todo el
      espacio de por medio. */
   .hero-wrapper.chat-focused {
-    min-height: 100svh; height: 100svh; display: flex; align-items: stretch;
+    /* Toma control total de la pantalla, tapando la nav (z-index:100) y
+       cualquier otra seccion de la pagina - igual que al hablar con Claude,
+       nada mas enviar el primer mensaje la conversacion pasa a ser lo unico
+       que se ve, sin scroll de fondo posible (ver body.chat-locked). */
+    position: fixed; inset: 0; z-index: 200;
+    min-height: 100dvh; height: 100dvh; display: flex; align-items: stretch;
   }
+  body.chat-locked { overflow: hidden; height: 100%; }
+  html.chat-locked { overflow: hidden; height: 100%; }
   .hero-wrapper.chat-focused .hero {
     padding: 84px 20px 20px; justify-content: flex-start; height: 100%;
     display: flex; flex-direction: column; max-width: 720px;
@@ -1035,6 +1042,6 @@
   }
 </script>
 
-<script src="./assets/chat-widget.js?v=8" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
+<script src="./assets/chat-widget.js?v=9" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
 </body>
 </html>
