@@ -96,6 +96,12 @@
 
   .hero-thread { width: 100%; max-width: 640px; margin-top: 20px; background: var(--paper); border-radius: 16px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); padding: 18px; display: none; flex-direction: column; gap: 10px; text-align: left; }
   .hero-thread.open { display: flex; }
+  /* Sin esto, los hijos de este flex column (mensajes y tarjetas) se
+     COMPRIMEN para caber en el espacio disponible (flex-shrink:1 por
+     defecto) en vez de desbordar y activar el scroll interno - por eso el
+     final de la conversacion se veia "cortado" sin que hubiera scroll que
+     hacer: scrollHeight y clientHeight daban el mismo valor. */
+  .hero-thread > * { flex-shrink: 0; }
   .hero-thread .msg { max-width: 84%; padding: 10px 14px; border-radius: 10px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; }
   .hero-thread .msg.user { align-self: flex-end; background: var(--taxi); color: var(--ink); font-weight: 600; border-bottom-right-radius: 2px; }
   .hero-thread .msg.bot { align-self: flex-start; background: var(--white); border: 1px solid var(--paper-dim); border-bottom-left-radius: 2px; }
