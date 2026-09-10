@@ -303,8 +303,12 @@
   .hotel-card-lead { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
   .hotel-card-lead input {
     width: 100%; padding: 10px 12px; border-radius: 8px; border: 1.5px solid var(--paper-dim);
-    background: var(--paper); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink);
+    background: var(--paper); font-family: 'Inter', sans-serif; color: var(--ink);
     outline: none; transition: border-color 0.15s ease;
+    /* 16px minimo a proposito: por debajo de eso, iOS Safari hace zoom
+       automatico al enfocar el campo (y luego el cliente tiene que
+       reajustar el zoom a mano) - con 16px no salta. */
+    font-size: 16px;
   }
   .hotel-card-lead input::placeholder { color: var(--mid); }
   .hotel-card-lead input:focus { border-color: var(--taxi); }
