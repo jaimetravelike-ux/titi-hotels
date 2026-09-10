@@ -148,9 +148,12 @@
   .hero-wrapper.chat-focused .hero {
     /* Sin padding propio: el hilo y la barra de escritura llegan hasta los
        bordes de verdad (nada de franjas oscuras vacias arriba/abajo) - el
-       respiro para el notch/home indicator lo pone cada uno por su cuenta. */
+       respiro para el notch/home indicator lo pone cada uno por su cuenta.
+       Sin max-width tampoco: en ordenador la conversacion ocupa todo el
+       ancho de la pantalla, no una columna estrecha centrada. */
     padding: 0; justify-content: flex-start; height: 100%;
-    display: flex; flex-direction: column; max-width: 720px;
+    display: flex; flex-direction: column; max-width: none; width: 100%;
+    align-items: stretch;
   }
   /* El titular de portada no pinta nada una vez la conversacion es lo unico
      en pantalla - tipo Claude, se quita del todo (no solo se encoge) para
@@ -160,18 +163,29 @@
   }
   /* Orden visual tipo Claude: el hilo de conversacion ocupa todo el hueco
      de arriba (order:1) y la barra de escritura queda anclada abajo del
-     todo (order:2) - se reordena por CSS sin tocar el HTML. */
+     todo (order:2) - se reordena por CSS sin tocar el HTML. Sin max-width
+     para que tanto el hilo como la barra usen todo el ancho disponible. */
   .hero-wrapper.chat-focused .hero-thread {
     order: 1;
-    flex: 1; max-height: none; margin: 0; min-height: 0;
+    flex: 1; max-height: none; max-width: none; width: 100%; margin: 0; min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    padding: max(14px, env(safe-area-inset-top)) 14px 14px;
+    /* El fondo del hilo llega de borde a borde de verdad (nada de caja
+       flotando estrecha), pero el contenido se autocentra en una columna
+       legible via padding lateral - el mismo truco que usa Claude en su
+       propio chat: pantalla completa, texto en una columna comoda. */
+    padding-top: max(14px, env(safe-area-inset-top));
+    padding-bottom: 14px;
+    padding-left: max(14px, calc(50% - 450px));
+    padding-right: max(14px, calc(50% - 450px));
   }
   .hero-wrapper.chat-focused .chatbar-wrap {
-    order: 2; flex-shrink: 0; margin: 0;
-    padding: 8px 14px max(10px, env(safe-area-inset-bottom));
+    order: 2; flex-shrink: 0; margin: 0; max-width: none; width: 100%;
+    padding-top: 8px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom));
+    padding-left: max(14px, calc(50% - 450px));
+    padding-right: max(14px, calc(50% - 450px));
   }
   .hero-wrapper, .hero-fade, .hero-photo img, .hero-thread, .hero-h1 { transition: all 0.45s ease; }
 
