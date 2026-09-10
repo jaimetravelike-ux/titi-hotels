@@ -1,0 +1,22 @@
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="128" y2="128" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1B2A6B"/>
+      <stop offset="1" stop-color="#0E1533"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="128" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6C8CFF"/>
+      <stop offset="1" stop-color="#38E1C6"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="url(#bg)"/>
+  <!-- cama estilizada -->
+  <rect x="24" y="70" width="80" height="10" rx="5" fill="url(#accent)"/>
+  <rect x="24" y="80" width="80" height="20" rx="6" fill="#141B3D"/>
+  <rect x="30" y="56" width="24" height="16" rx="5" fill="#F4F6FF"/>
+  <path d="M24 70 v22" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <path d="M104 70 v22" stroke="url(#accent)" stroke-width="6" stroke-linecap="round"/>
+  <!-- "aguja" de brujula / copiloto sobre la cama -->
+  <circle cx="90" cy="38" r="15" fill="none" stroke="url(#accent)" stroke-width="3.5"/>
+  <path d="M90 30 L94 38 L90 46 L86 38 Z" fill="#38E1C6"/>
+</svg>
