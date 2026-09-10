@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Titi Hotels — Especialistas en hoteles de Nueva York</title>
 <link rel="icon" type="image/png" href="./assets/images/icono.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -165,6 +165,8 @@
     order: 1;
     flex: 1; max-height: none; margin: 0; min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     padding: max(14px, env(safe-area-inset-top)) 14px 14px;
   }
   .hero-wrapper.chat-focused .chatbar-wrap {
@@ -1055,6 +1057,6 @@
   }
 </script>
 
-<script src="./assets/chat-widget.js?v=12" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
+<script src="./assets/chat-widget.js?v=13" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
 </body>
 </html>
