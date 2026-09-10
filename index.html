@@ -291,6 +291,20 @@
   }
   .hotel-card-reserve:hover { background: var(--taxi-deep); }
   .hotel-card-reserve:active { transform: scale(0.98); }
+  .hotel-card-reserve:disabled { opacity: 0.7; cursor: default; transform: none; }
+
+  /* Datos de contacto pedidos directamente en la card, para no tener que
+     volver a escribirlos por chat - mas rapido para el cliente y llega ya
+     estructurado al backend. */
+  .hotel-card-lead { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .hotel-card-lead input {
+    width: 100%; padding: 10px 12px; border-radius: 8px; border: 1.5px solid var(--paper-dim);
+    background: var(--paper); font-family: 'Inter', sans-serif; font-size: 13px; color: var(--ink);
+    outline: none; transition: border-color 0.15s ease;
+  }
+  .hotel-card-lead input::placeholder { color: var(--mid); }
+  .hotel-card-lead input:focus { border-color: var(--taxi); }
+  .hotel-card-lead-error { font-size: 11.5px; color: var(--brick); font-weight: 600; }
 
   /* TICKET FORM */
   .ticket-wrap { position: relative; opacity: 0; animation: fade-up 0.8s ease 0.4s both; }
@@ -1090,6 +1104,6 @@
   }
 </script>
 
-<script src="./assets/chat-widget.js?v=14" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
+<script src="./assets/chat-widget.js?v=15" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
 </body>
 </html>
