@@ -700,6 +700,7 @@
     .hero-thread .msg { font-size: 13px; max-width: 90%; }
   }
 </style>
+<link rel="stylesheet" href="./assets/atlas/atlas.css">
 </head>
 <body>
 
@@ -889,45 +890,28 @@
   </div>
 </section>
 
-<section class="section neighborhoods">
+<section class="section neighborhoods atlas-embed" id="atlas-embed" aria-label="Mapa interactivo de zonas de Nueva York">
   <div class="section-inner">
     <h2 class="sec-h2">Barrios donde alojarse en Nueva York</h2>
-    <p class="sec-desc">No todo Manhattan es igual. Te contamos qué zona encaja con tu viaje.</p>
-    <div class="hood-grid">
-      <div class="hood-card tall" onclick="consultarZona('Midtown / Times Square')">
-        <div class="hood-bg bg-midtown"><img src="./assets/images/mid.jpg" alt="Hoteles en Midtown, cerca de Times Square, Nueva York" onload="this.classList.add('loaded')" onerror="this.style.display='none'"></div>
-        <div class="hood-overlay"></div>
-        <div class="hood-content"><div class="hood-tag">La más pedida · céntrica y turística</div><div class="hood-name">Midtown</div></div>
-        <div class="hood-btn">Consultar</div>
-      </div>
-      <div class="hood-card" onclick="consultarZona('Financial District')">
-        <div class="hood-bg bg-fidi"><img src="./assets/images/economico.jpg" alt="Hoteles en Financial District, Nueva York" onload="this.classList.add('loaded')" onerror="this.style.display='none'"></div>
-        <div class="hood-overlay"></div>
-        <div class="hood-content"><div class="hood-tag">Rascacielos y precios algo más bajos</div><div class="hood-name">Financial District</div></div>
-        <div class="hood-btn">Consultar</div>
-      </div>
-      <div class="hood-card" onclick="consultarZona('Brooklyn')">
-        <div class="hood-bg bg-brooklyn"><img src="./assets/images/brook.jpg" alt="Hoteles en Brooklyn, Nueva York" onload="this.classList.add('loaded')" onerror="this.style.display='none'"></div>
-        <div class="hood-overlay"></div>
-        <div class="hood-content"><div class="hood-tag">Ambiente local, buen metro a Manhattan</div><div class="hood-name">Brooklyn</div></div>
-        <div class="hood-btn">Consultar</div>
-      </div>
-      <div class="hood-card" onclick="consultarZona('Upper West Side')">
-        <div class="hood-bg bg-uws"><img src="./assets/images/upper.jpg" alt="Hoteles en Upper West Side, junto a Central Park, Nueva York" onload="this.classList.add('loaded')" onerror="this.style.display='none'"></div>
-        <div class="hood-overlay"></div>
-        <div class="hood-content"><div class="hood-tag">Tranquilo, junto a Central Park</div><div class="hood-name">Upper West Side</div></div>
-        <div class="hood-btn">Consultar</div>
-      </div>
-      <div class="hood-card" onclick="consultarZona('Chelsea')">
-        <div class="hood-bg bg-chelsea"><img src="./assets/images/chelsea.jpg" alt="Hoteles en Chelsea, Nueva York" onload="this.classList.add('loaded')" onerror="this.style.display='none'"></div>
-        <div class="hood-overlay"></div>
-        <div class="hood-content"><div class="hood-tag">Moderno, buen equilibrio precio-zona</div><div class="hood-name">Chelsea</div></div>
-        <div class="hood-btn">Consultar</div>
-      </div>
-
-    </div>
-    <p class="hood-note">¿Viajas a otro destino? <a href="#form">También seguimos gestionando otros destinos, escríbenos.</a></p>
+    <p class="sec-desc">No todo Manhattan es igual. Explora el mapa y descubre qué zona encaja con tu viaje.</p>
   </div>
+  <section class="trip-toolbar" aria-label="Preferencias del viaje"><span>¿Qué buscas en tu viaje?</span><div class="trip-filters" role="group" aria-label="Tipo de viaje"><button data-filter="all" aria-pressed="true">Todas las zonas</button><button data-filter="first" aria-pressed="false">Mi primera vez en Nueva York</button><button data-filter="parks" aria-pressed="false">Parques y museos</button><button data-filter="local" aria-pressed="false">Vida de barrio</button><button data-filter="views" aria-pressed="false">Vistas al skyline</button></div></section>
+  <section class="poi-toolbar" aria-label="Sitios recomendados"><button id="poi-toggle" class="poi-toggle" aria-pressed="false" aria-controls="poi-filters">＋ Ver sitios recomendados</button><small id="poi-count" role="status">Opcional · comer, dulces y tiendas</small><div id="poi-filters" class="poi-filters" role="group" aria-label="Tipo de sitio" hidden><button data-poi-filter="all" aria-pressed="true">Todos</button><button data-poi-filter="food" aria-pressed="false">♨ Comer</button><button data-poi-filter="sweet" aria-pressed="false">◉ Dulces</button><button data-poi-filter="shop" aria-pressed="false">◇ Tiendas</button></div></section>
+  <main class="atlas">
+    <div class="map-stage"><div id="map" aria-label="Mapa de Nueva York, con vista aérea y perspectiva 3D opcional. Elige una zona usando los botones de la lista."></div><div class="map-shade"></div><div class="map-status" id="map-status" role="status">Preparando Nueva York…</div></div>
+    <aside class="left"><div class="eyebrow"><i></i> ENCUENTRA TU LUGAR</div><h1>Nueva York,<br> <em>a tu manera.</em></h1><p class="intro">Cada barrio cambia el viaje.<br> Explora la ciudad antes de elegir hotel.</p><div class="list-caption"><span>ELIGE TU BASE</span><span id="zone-total">07 ZONAS</span></div><div id="zones" role="navigation" aria-label="Zonas de Nueva York"></div></aside>
+    <div class="map-top"><span class="map-badge"><i></i> <span id="view-label">EXPLORADOR 3D</span></span><div class="view-toggle" role="group" aria-label="Perspectiva del mapa"><button id="view3d" aria-pressed="true">3D</button><button id="view2d" aria-pressed="false">2D</button></div></div>
+    <div class="map-tools"><button id="zoom-in" aria-label="Acercar mapa">+</button><button id="zoom-out" aria-label="Alejar mapa">−</button><span></span><button id="rotate" aria-label="Girar la vista 45 grados">⟳</button><button id="overview" aria-label="Ver todas las zonas" title="Ver todas las zonas">⌖</button></div>
+    <div class="map-bottom"><button class="overview-button" id="overview-wide"><span>⌖</span><div>Ver toda Nueva York<small>Vuelve a situarte en la ciudad</small></div><b>↗</b></button><div class="map-instruction">Arrastra para explorar · + / − para acercarte</div></div>
+    <article class="detail" id="detail"><button class="photo-wrap" id="open-photo" aria-label="Ampliar foto de la zona"><img id="zone-photo" src="./assets/atlas/times-square.jpg" width="800" height="600" alt="Times Square iluminado por la noche"><div class="photo-gradient"></div><span class="photo-pill" id="photo-count">01 / 07</span><span class="expand-photo" aria-hidden="true">⤢</span><div class="photo-title"><span id="borough">MANHATTAN · TIMES SQUARE</span><h2 id="zone-name">Times Square</h2></div></button><div class="detail-body"><div class="match" id="match">Para vivir la Nueva York más icónica</div><p class="description" id="description"></p><div class="tags" id="tags"></div><div class="copilot-tip"><span class="tip-icon">✧</span><div><h3>El consejo del copiloto</h3><p id="tip"></p></div></div><div class="facts"><div><h3><span>↗</span> Lo que te llevas</h3><p id="pros"></p></div><div><h3><span>◎</span> Antes de reservar</h3><p id="cons"></p></div><div><h3><span>⌖</span> En el entorno</h3><p id="near"></p></div></div><button class="ask" id="ask"><span id="ask-label">Buscar hotel aquí</span><span>↗</span></button><section class="poi-near" aria-labelledby="poi-near-name"><h3 id="poi-near-name">Nuestros sitios para esta zona</h3><p id="poi-near-copy"></p><div class="poi-list" id="poi-near-list"></div><button class="poi-all" id="poi-all">Explorar todos los sitios →</button></section><div class="panel-end"><span id="position-label">ZONA 01 DE 07</span><div><button id="previous" aria-label="Zona anterior">←</button><button id="next" aria-label="Zona siguiente">→</button></div></div></div></article>
+    <button class="mobile-detail" id="mobile-detail">Times Square · Ver consejos ↓</button>
+  </main>
+  <section class="poi-catalog-wrap"><details class="poi-catalog"><summary>Consultar sitios y direcciones sin usar el mapa</summary><h2>Sitios recomendados en Manhattan</h2><ul><li><a href="https://carminesnyc.com/locations/times-square">Carmine's</a> · 200 W 44th Street · Times Square</li><li><a href="https://www.lostacos1.com/location/los-tacos-times-square/">Los Tacos No. 1</a> · 229 W 43rd Street</li><li><a href="https://site.krispykreme.com/ny/new-york/1601-broadway">Krispy Kreme</a> · 1601 Broadway</li><li><a href="https://www.mms.com/en-gb/explore/mms-stores/new-york">M&amp;M'S</a> · 1600 Broadway</li><li><a href="https://www.burgerjointny.com/">Burger Joint</a> · 119 W 56th Street</li><li><a href="https://www.lego.com/en-us/stores/store/5th-avenue">LEGO</a> · 636 Fifth Avenue</li><li><a href="https://www.nintendo.com/us/retail-locations/new-york/">Nintendo</a> · 10 Rockefeller Plaza</li><li><a href="https://faoschwarz.com/pages/store-location-hours">FAO Schwarz</a> · 30 Rockefeller Plaza</li><li><a href="https://www.americangirl.com/pages/retail-new-york">American Girl</a> · 75 Rockefeller Plaza</li><li><a href="https://levainbakery.com/pages/bakeries">Levain Bakery</a> · 167 W 74th Street</li><li><a href="https://levainbakery.com/pages/flatiron-nyc">Levain Flatiron</a> · 2 W 18th Street</li><li><a href="https://harrypottershop.com/pages/new-york">Harry Potter</a> · 935 Broadway</li></ul><p>Los marcadores son orientativos; usa «Cómo llegar» para la dirección exacta. Las agrupaciones relacionan zonas de hotel con paseos sugeridos, no delimitan barrios. Precios y horarios: consulta la web oficial de cada local.</p></details>
+  <p class="atlas-attrib">Datos del mapa: <a href="https://openfreemap.org/" target="_blank" rel="noopener noreferrer">OpenFreeMap</a> y <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a>.</p></section>
+  <p class="sr" role="status" aria-live="polite" id="announcement"></p>
+  <dialog id="photo-dialog" aria-label="Fotografía ampliada"><button class="close-dialog" aria-label="Cerrar" data-close="photo-dialog">×</button><img id="full-photo" alt=""><p id="photo-caption"></p></dialog>
+  <dialog class="poi-sheet" id="poi-dialog" aria-labelledby="poi-title"><button class="close-dialog" data-close="poi-dialog" aria-label="Cerrar sitio">×</button><div class="poi-picture" id="poi-picture" aria-hidden="true"></div><div class="poi-sheet-body"><span class="dialog-kicker" id="poi-category"></span><h2 id="poi-title"></h2><p class="poi-address" id="poi-address"></p><p class="poi-advice" id="poi-advice"></p><div class="poi-links"><a id="poi-route" target="_blank" rel="noopener noreferrer">Cómo llegar ↗</a><a id="poi-official" target="_blank" rel="noopener noreferrer">Web oficial ↗</a><button id="poi-hotel">Ver zona de alojamiento</button></div><p class="poi-note">Consulta precios y horarios en la web oficial.</p></div></dialog>
+  <dialog id="poi-directory" aria-labelledby="poi-directory-title"><button class="close-dialog" data-close="poi-directory" aria-label="Cerrar lista">×</button><span class="dialog-kicker">Recomendaciones del copiloto</span><h2 id="poi-directory-title">Nuestra selección</h2><div class="poi-list" id="poi-directory-list"></div></dialog>
 </section>
 
 <div class="numbers-section">
@@ -1171,5 +1155,41 @@
 </script>
 
 <script src="./assets/chat-widget.js?v=26" data-api-url="https://backendbook-production-8c07.up.railway.app"></script>
+<script>
+(function () {
+  // El mapa interactivo (MapLibre + nuestro bundle) pesa bastante, asi que
+  // no se carga hasta que la seccion esta a punto de entrar en pantalla.
+  var section = document.getElementById('atlas-embed');
+  if (!section) return;
+  var started = false;
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = resolve;
+      s.onerror = reject;
+      document.body.appendChild(s);
+    });
+  }
+  function start() {
+    if (started) return;
+    started = true;
+    var css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://unpkg.com/maplibre-gl@5.20.0/dist/maplibre-gl.css';
+    document.head.appendChild(css);
+    loadScript('https://unpkg.com/maplibre-gl@5.20.0/dist/maplibre-gl.js')
+      .then(function () { return loadScript('./assets/atlas/atlas-bundle.js?v=1'); })
+      .catch(function () {
+        var status = document.getElementById('map-status');
+        if (status) status.textContent = 'No se ha podido cargar el mapa. Puedes explorar las zonas desde el chat.';
+      });
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { start(); io.disconnect(); } });
+  }, { rootMargin: '600px 0px' });
+  io.observe(section);
+})();
+</script>
 </body>
 </html>
