@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+<script>
+  // titihotels.com sirve el mismo sitio (dominio antiguo, ya migrado a
+  // bedcopilot.com) - se redirige al instante, antes de cargar nada mas,
+  // para que nadie se quede navegando la marca vieja por error.
+  if (/(^|\.)titihotels\.com$/.test(location.hostname)) {
+    location.replace('https://bedcopilot.com' + location.pathname + location.search + location.hash);
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>BedCopilot — Tu copiloto para reservar hotel en Nueva York</title>
@@ -955,7 +963,7 @@
         <br><br>
         <strong>Por eso nos especializamos en un solo destino.</strong> Preferimos conocer Nueva York a fondo — sus barrios, sus hoteles, sus letras pequeñas — antes que intentar cubrir el mundo entero sin conocer ninguno de verdad.
         <br><br>
-        Desde 2025 llevamos <strong>más de 300 clientes alojados</strong> en distintos destinos. Cada consulta la respondemos como si fuera nuestro propio viaje.
+        Desde 2025 llevamos <strong>más de 300 clientes alojados</strong> en Nueva York. Cada consulta la respondemos como si fuera nuestro propio viaje.
       </div>
       <div class="founder-sig">
         <div class="founder-sig-photo">
