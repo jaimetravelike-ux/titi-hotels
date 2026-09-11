@@ -1179,7 +1179,7 @@
     css.href = 'https://unpkg.com/maplibre-gl@5.20.0/dist/maplibre-gl.css';
     document.head.appendChild(css);
     loadScript('https://unpkg.com/maplibre-gl@5.20.0/dist/maplibre-gl.js')
-      .then(function () { return loadScript('./assets/atlas/atlas-bundle.js?v=1'); })
+      .then(function () { return loadScript('./assets/atlas/atlas-bundle.js?v=2'); })
       .catch(function () {
         var status = document.getElementById('map-status');
         if (status) status.textContent = 'No se ha podido cargar el mapa. Puedes explorar las zonas desde el chat.';
