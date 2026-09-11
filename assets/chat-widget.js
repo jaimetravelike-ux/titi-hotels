@@ -426,8 +426,17 @@
     // de fondo (es un bug conocido) - hay que fijar el body con position:fixed
     // y compensar con top:-scrollY, que es la tecnica que de verdad funciona
     // ahi. La clase chat-locked se deja tambien para el resto de navegadores.
+    // Una vez la conversacion ya esta en marcha, el placeholder de ejemplo
+    // ("Ej: Row NYC, del 12 al 15...") deja de tener sentido - el cliente ya
+    // sabe como se usa. Lo cambiamos por un mensaje que invite a seguir
+    // preguntando (otra zona, otro hotel, cualquier duda) en vez de dejar la
+    // barra muda una vez respondida la primera busqueda.
+    const HERO_PLACEHOLDER_INITIAL = heroInput.placeholder;
+    const HERO_PLACEHOLDER_ACTIVE = '¿Otro hotel o alguna duda? Aquí sigo';
+
     function focusChatMode() {
       if (heroWrapper) heroWrapper.classList.add('chat-focused');
+      heroInput.placeholder = HERO_PLACEHOLDER_ACTIVE;
       const scrollY = window.scrollY || window.pageYOffset || 0;
       document.body.dataset.lockedScrollY = String(scrollY);
       document.body.style.position = 'fixed';
@@ -443,6 +452,7 @@
     // position:fixed el navegador se iria arriba del todo).
     function exitChatMode() {
       if (heroWrapper) heroWrapper.classList.remove('chat-focused');
+      heroInput.placeholder = HERO_PLACEHOLDER_INITIAL;
       const scrollY = Number(document.body.dataset.lockedScrollY || 0);
       document.body.style.position = '';
       document.body.style.top = '';
